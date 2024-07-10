@@ -13,6 +13,8 @@
 		543B87CA2C3E80150092AC5A /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 543B87C92C3E80150092AC5A /* Base */; };
 		543B87CC2C3E80160092AC5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 543B87CB2C3E80160092AC5A /* Assets.xcassets */; };
 		543B87CF2C3E80160092AC5A /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 543B87CE2C3E80160092AC5A /* Base */; };
+		543B87D72C3E80490092AC5A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 543B87D62C3E80490092AC5A /* .gitignore */; };
+		543B87D92C3E80620092AC5A /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B87D82C3E80620092AC5A /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		543B87CB2C3E80160092AC5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		543B87CE2C3E80160092AC5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		543B87D02C3E80160092AC5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		543B87D62C3E80490092AC5A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		543B87D82C3E80620092AC5A /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +44,7 @@
 		543B87B62C3E80150092AC5A = {
 			isa = PBXGroup;
 			children = (
+				543B87D62C3E80490092AC5A /* .gitignore */,
 				543B87C12C3E80150092AC5A /* WeatherAt */,
 				543B87C02C3E80150092AC5A /* Products */,
 			);
@@ -63,6 +68,7 @@
 				543B87CB2C3E80160092AC5A /* Assets.xcassets */,
 				543B87CD2C3E80160092AC5A /* LaunchScreen.storyboard */,
 				543B87D02C3E80160092AC5A /* Info.plist */,
+				543B87D82C3E80620092AC5A /* APIKey.swift */,
 			);
 			path = WeatherAt;
 			sourceTree = "<group>";
@@ -125,6 +131,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				543B87D72C3E80490092AC5A /* .gitignore in Resources */,
 				543B87CC2C3E80160092AC5A /* Assets.xcassets in Resources */,
 				543B87CF2C3E80160092AC5A /* Base in Resources */,
 				543B87CA2C3E80150092AC5A /* Base in Resources */,
@@ -140,6 +147,7 @@
 			files = (
 				543B87C72C3E80150092AC5A /* ViewController.swift in Sources */,
 				543B87C32C3E80150092AC5A /* AppDelegate.swift in Sources */,
+				543B87D92C3E80620092AC5A /* APIKey.swift in Sources */,
 				543B87C52C3E80150092AC5A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
