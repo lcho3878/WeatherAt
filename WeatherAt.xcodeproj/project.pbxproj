@@ -19,6 +19,7 @@
 		543B87E12C3E82D50092AC5A /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B87E02C3E82D50092AC5A /* Weather.swift */; };
 		543B87E82C3ED1920092AC5A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 543B87E72C3ED1920092AC5A /* SnapKit */; };
 		543B87EB2C3ED19B0092AC5A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 543B87EA2C3ED19B0092AC5A /* Alamofire */; };
+		543B87ED2C3ED6B30092AC5A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B87EC2C3ED6B30092AC5A /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		543B87DB2C3E80A50092AC5A /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		543B87DE2C3E81A40092AC5A /* CityList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityList.json; sourceTree = "<group>"; };
 		543B87E02C3E82D50092AC5A /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		543B87EC2C3ED6B30092AC5A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				543B87DD2C3E81860092AC5A /* Resource */,
 				543B87E52C3ED0C00092AC5A /* CustomView */,
 				543B87CD2C3E80160092AC5A /* LaunchScreen.storyboard */,
+				543B87EE2C3ED6C70092AC5A /* HomeView */,
 				543B87D02C3E80160092AC5A /* Info.plist */,
 				543B87D82C3E80620092AC5A /* APIKey.swift */,
 				543B87DA2C3E809B0092AC5A /* Test */,
@@ -113,6 +116,14 @@
 				543B87C62C3E80150092AC5A /* BaseViewController.swift */,
 			);
 			name = CustomView;
+			sourceTree = "<group>";
+		};
+		543B87EE2C3ED6C70092AC5A /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				543B87EC2C3ED6B30092AC5A /* HomeViewController.swift */,
+			);
+			name = HomeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +211,7 @@
 				543B87C32C3E80150092AC5A /* AppDelegate.swift in Sources */,
 				543B87D92C3E80620092AC5A /* APIKey.swift in Sources */,
 				543B87E12C3E82D50092AC5A /* Weather.swift in Sources */,
+				543B87ED2C3ED6B30092AC5A /* HomeViewController.swift in Sources */,
 				543B87C52C3E80150092AC5A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
