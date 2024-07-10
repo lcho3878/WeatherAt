@@ -7,12 +7,10 @@
 
 import UIKit
 
-final class TestViewController: UIViewController {
+final class TestViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Test Viewdidload")
-        view.backgroundColor = .systemBackground
     }
     
 }
