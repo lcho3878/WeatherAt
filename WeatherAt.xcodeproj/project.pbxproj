@@ -20,6 +20,8 @@
 		543B87E82C3ED1920092AC5A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 543B87E72C3ED1920092AC5A /* SnapKit */; };
 		543B87EB2C3ED19B0092AC5A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 543B87EA2C3ED19B0092AC5A /* Alamofire */; };
 		543B87ED2C3ED6B30092AC5A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B87EC2C3ED6B30092AC5A /* HomeViewController.swift */; };
+		543B87FB2C3FD9450092AC5A /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B87FA2C3FD9450092AC5A /* WeatherManager.swift */; };
+		543B87FD2C3FD9F00092AC5A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B87FC2C3FD9F00092AC5A /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		543B87DE2C3E81A40092AC5A /* CityList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityList.json; sourceTree = "<group>"; };
 		543B87E02C3E82D50092AC5A /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		543B87EC2C3ED6B30092AC5A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		543B87FA2C3FD9450092AC5A /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		543B87FC2C3FD9F00092AC5A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				543B87E02C3E82D50092AC5A /* Weather.swift */,
+				543B87FA2C3FD9450092AC5A /* WeatherManager.swift */,
 			);
 			name = Weather;
 			sourceTree = "<group>";
@@ -122,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				543B87EC2C3ED6B30092AC5A /* HomeViewController.swift */,
+				543B87FC2C3FD9F00092AC5A /* HomeViewModel.swift */,
 			);
 			name = HomeView;
 			sourceTree = "<group>";
@@ -207,7 +213,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				543B87DC2C3E80A50092AC5A /* TestViewController.swift in Sources */,
+				543B87FD2C3FD9F00092AC5A /* HomeViewModel.swift in Sources */,
 				543B87C72C3E80150092AC5A /* BaseViewController.swift in Sources */,
+				543B87FB2C3FD9450092AC5A /* WeatherManager.swift in Sources */,
 				543B87C32C3E80150092AC5A /* AppDelegate.swift in Sources */,
 				543B87D92C3E80620092AC5A /* APIKey.swift in Sources */,
 				543B87E12C3E82D50092AC5A /* Weather.swift in Sources */,
