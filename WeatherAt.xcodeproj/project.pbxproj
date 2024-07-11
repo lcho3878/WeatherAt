@@ -22,6 +22,7 @@
 		543B87ED2C3ED6B30092AC5A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B87EC2C3ED6B30092AC5A /* HomeViewController.swift */; };
 		543B87FB2C3FD9450092AC5A /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B87FA2C3FD9450092AC5A /* WeatherManager.swift */; };
 		543B87FD2C3FD9F00092AC5A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B87FC2C3FD9F00092AC5A /* HomeViewModel.swift */; };
+		543B87FF2C3FDA5B0092AC5A /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B87FE2C3FDA5B0092AC5A /* Observable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		543B87EC2C3ED6B30092AC5A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		543B87FA2C3FD9450092AC5A /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		543B87FC2C3FD9F00092AC5A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		543B87FE2C3FDA5B0092AC5A /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 		543B87C12C3E80150092AC5A /* WeatherAt */ = {
 			isa = PBXGroup;
 			children = (
+				543B87FE2C3FDA5B0092AC5A /* Observable.swift */,
 				543B87E22C3E82FE0092AC5A /* Weather */,
 				543B87DD2C3E81860092AC5A /* Resource */,
 				543B87E52C3ED0C00092AC5A /* CustomView */,
@@ -218,6 +221,7 @@
 				543B87FB2C3FD9450092AC5A /* WeatherManager.swift in Sources */,
 				543B87C32C3E80150092AC5A /* AppDelegate.swift in Sources */,
 				543B87D92C3E80620092AC5A /* APIKey.swift in Sources */,
+				543B87FF2C3FDA5B0092AC5A /* Observable.swift in Sources */,
 				543B87E12C3E82D50092AC5A /* Weather.swift in Sources */,
 				543B87ED2C3ED6B30092AC5A /* HomeViewController.swift in Sources */,
 				543B87C52C3E80150092AC5A /* SceneDelegate.swift in Sources */,
