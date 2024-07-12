@@ -33,10 +33,10 @@ final class HomeViewModel {
         outputWeather.bind { result in
             guard let result else { return }
             let name = result.name
-            let temp = result.main.temp - 273.15
+            let temp = result.main.temp
             guard let description = result.weather.first?.description else { return }
-            let tempMin = result.main.tempMin - 273.15
-            let tempMax = result.main.tempMax - 273.15
+            let tempMin = result.main.tempMin
+            let tempMax = result.main.tempMax
             self.mainOutput.value = MainOutput(cityname: name, temp: temp, description: description, tempMin: tempMin, tempMax: tempMax)
         }
         

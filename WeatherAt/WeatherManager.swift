@@ -15,8 +15,14 @@ final class WeatherManager {
     private init() {}
     
     func callRequest(cityId: Int, completionHandler: @escaping (WeatherResult) -> Void) {
-        let url = "https://api.openweathermap.org/data/2.5/weather?id=\(cityId)&appid=\(APIKey.weatherAPI)"
-        AF.request(url)
+        let url = "https://api.openweathermap.org/data/2.5/weather"
+        let params: Parameters = [
+            "appid": APIKey.weatherAPI,
+            "id": cityId,
+            "lang": "kr",
+            "units": "metric"
+        ]
+        AF.request(url, parameters: params)
             .responseDecodable(of: WeatherResult.self) { response in
                 switch response.result {
                 case .success(let v):
