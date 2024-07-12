@@ -72,18 +72,69 @@ struct WeatherResult: Decodable {
     }
     
     struct Rain: Decodable {
-        let precipitation: Double
+        let oneHour: Double?
+        let threeHour: Double?
         
         enum CodingKeys: String, CodingKey {
-            case precipitation = "1h"
+            case oneHour = "1h"
+            case threeHour = "3h"
         }
     }
     
     struct Snow: Decodable {
-        let precipitation: Double
+        let oneHour: Double?
+        let threeHour: Double?
         
         enum CodingKeys: String, CodingKey {
-            case precipitation = "1h"
+            case oneHour = "1h"
+            case threeHour = "3h"
         }
     }
 }
+
+struct ForecastResult: Decodable {
+    
+    let cod: String
+    let message: Int
+    let cnt: Int
+    let list: [Forecast]
+    let city: City
+    
+    struct City: Decodable {
+        let id: Int
+        let name: String
+        let coord: Coord
+        let country: String
+        let population: Int
+        let timezone: Int
+        let sunrise: Int
+        let sunset: Int
+    }
+    
+    struct Coord: Decodable {
+        let lon: Double
+        let lat: Double
+    }
+    
+    struct Forecast: Decodable {
+        let dt: Int
+        let main: WeatherResult.Main
+        let weather: [WeatherResult.Weather]
+        let clouds: WeatherResult.Clouds
+        let wind: WeatherResult.Wind
+        let visibility: Int
+        let pop: Double // forecast only
+        let dtText: String
+        let rain :WeatherResult.Rain?
+        let snow: WeatherResult.Snow?
+        
+        
+        enum CodingKeys: String, CodingKey {
+            case dt, main, weather, clouds, wind, visibility, pop, rain, snow
+            case dtText = "dt_txt"
+        }
+        
+    }
+}
+
+

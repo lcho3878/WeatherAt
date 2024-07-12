@@ -21,6 +21,7 @@ final class WeatherManager {
             .responseDecodable(of: T.self) { response in
                 switch response.result {
                 case .success(let v):
+                    print("Success: \(T.self)")
                     completionHandler(v)
                 case .failure(let e):
                     print(e)

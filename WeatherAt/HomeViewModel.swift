@@ -28,6 +28,7 @@ final class HomeViewModel {
     
     var mainOutput = Observable<MainOutput?>(nil)
     var outputWeather = Observable<WeatherResult?>(nil)
+    var outputForeCast = Observable<ForecastResult?>(nil)
     
     init() {
         outputWeather.bind { result in
@@ -42,6 +43,10 @@ final class HomeViewModel {
         
         WeatherManager.shared.callRequest(api: .current(cityId: 1835847), type: WeatherResult.self){ result in
             self.outputWeather.value = result
+        }
+        
+        WeatherManager.shared.callRequest(api: .forecast(cityId: 1835847), type: ForecastResult.self) { result in
+            self.outputForeCast.value = result
         }
     }
     
