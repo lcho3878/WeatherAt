@@ -10,9 +10,11 @@ import SnapKit
 
 final class HomeViewController: BaseViewController {
     
+    private let viewModel = HomeViewModel()
+    
     private let cityLabel = {
         let view = UILabel()
-        view.text = "Jeju City"
+//        view.text = "Jeju City"
         view.textAlignment = .center
         view.font = .systemFont(ofSize: 40)
         return view
@@ -20,7 +22,7 @@ final class HomeViewController: BaseViewController {
     
     private let tempLabel = {
         let view = UILabel()
-        view.text = "5.9°"
+//        view.text = "5.9°"
         view.textAlignment = .center
         view.font = .systemFont(ofSize: 96, weight: .thin)
         return view
@@ -28,7 +30,7 @@ final class HomeViewController: BaseViewController {
     
     private let descriptionLabel = {
         let view = UILabel()
-        view.text = "Broken Clouds"
+//        view.text = "Broken Clouds"
         view.textAlignment = .center
         view.font = .systemFont(ofSize: 24)
         return view
@@ -36,7 +38,7 @@ final class HomeViewController: BaseViewController {
     
     private let minmaxLabel = {
         let view = UILabel()
-        view.text = "최고 : 7.0° | 최저 : -4.2°"
+//        view.text = "최고 : 7.0° | 최저 : -4.2°"
         view.textAlignment = .center
         view.font = .systemFont(ofSize: 24)
         return view
@@ -44,6 +46,16 @@ final class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindData()
+    }
+    
+    private func bindData() {
+        viewModel.mainOutput.bind {
+            self.cityLabel.text = $0?.cityname
+            self.descriptionLabel.text = $0?.description
+            self.tempLabel.text = $0?.tempLabel
+            self.minmaxLabel.text = $0?.minmaxLabel
+        }
     }
     
     override func configureView() {
