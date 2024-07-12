@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BaseCollectionViewCell: UICollectionViewCell, Reusable {
+class BaseCollectionViewCell: UICollectionViewCell, Reusable, Base {
     
     static var id: String {
         return String(describing: self)

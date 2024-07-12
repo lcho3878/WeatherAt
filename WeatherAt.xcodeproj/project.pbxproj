@@ -30,6 +30,7 @@
 		543B880B2C4142A90092AC5A /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B880A2C4142A90092AC5A /* ForecastTableViewCell.swift */; };
 		543B880D2C4198000092AC5A /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B880C2C4198000092AC5A /* Date+Extension.swift */; };
 		543B88102C419F6B0092AC5A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 543B880F2C419F6B0092AC5A /* Kingfisher */; };
+		543B88122C41A11C0092AC5A /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B88112C41A11C0092AC5A /* Base.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		543B88082C4142220092AC5A /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		543B880A2C4142A90092AC5A /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 		543B880C2C4198000092AC5A /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		543B88112C41A11C0092AC5A /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				543B88082C4142220092AC5A /* Reusable.swift */,
+				543B88112C41A11C0092AC5A /* Base.swift */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				543B880D2C4198000092AC5A /* Date+Extension.swift in Sources */,
 				543B87C32C3E80150092AC5A /* AppDelegate.swift in Sources */,
 				543B880B2C4142A90092AC5A /* ForecastTableViewCell.swift in Sources */,
+				543B88122C41A11C0092AC5A /* Base.swift in Sources */,
 				543B88092C4142220092AC5A /* Reusable.swift in Sources */,
 				543B88022C40F98A0092AC5A /* Double+Extension.swift in Sources */,
 				543B87D92C3E80620092AC5A /* APIKey.swift in Sources */,
