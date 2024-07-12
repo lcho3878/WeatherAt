@@ -14,16 +14,11 @@ final class WeatherManager {
     
     private init() {}
     
-    func callRequest(cityId: Int, completionHandler: @escaping (WeatherResult) -> Void) {
-        let url = "https://api.openweathermap.org/data/2.5/weather"
-        let params: Parameters = [
-            "appid": APIKey.weatherAPI,
-            "id": cityId,
-            "lang": "kr",
-            "units": "metric"
-        ]
+    func callRequest<T: Decodable>(api: WeatherRequest, type: T.Type, completionHandler: @escaping (T) -> Void) {
+        guard let url = api.endPoint else { return }
+        let params = api.parameters
         AF.request(url, parameters: params)
-            .responseDecodable(of: WeatherResult.self) { response in
+            .responseDecodable(of: T.self) { response in
                 switch response.result {
                 case .success(let v):
                     completionHandler(v)
@@ -33,4 +28,41 @@ final class WeatherManager {
             }
     }
     
+}
+
+enum WeatherRequest {
+    case current(cityId: Int)
+    case forecast(cityId: Int)
+    
+    var baseURL: String {
+        return "https://api.openweathermap.org/data/2.5/"
+    }
+    
+    var endPoint: URL? {
+        switch self {
+        case .current:
+            return URL(string: baseURL + "weather")
+        case .forecast:
+            return URL(string: baseURL + "forecast")
+        }
+    }
+    
+    var parameters: Parameters {
+        switch self {
+        case .current(let cityId):
+            return [
+                "appid": APIKey.weatherAPI,
+                "id": cityId,
+                "lang": "kr",
+                "units": "metric"
+            ]
+        case .forecast(let cityId):
+            return [
+                "appid": APIKey.weatherAPI,
+                "id": cityId,
+                "lang": "kr",
+                "units": "metric"
+            ]
+        }
+    }
 }

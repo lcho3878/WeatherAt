@@ -40,7 +40,7 @@ final class HomeViewModel {
             self.mainOutput.value = MainOutput(cityname: name, temp: temp, description: description, tempMin: tempMin, tempMax: tempMax)
         }
         
-        WeatherManager.shared.callRequest(cityId: 1835847) { result in
+        WeatherManager.shared.callRequest(api: .current(cityId: 1835847), type: WeatherResult.self){ result in
             self.outputWeather.value = result
         }
     }
