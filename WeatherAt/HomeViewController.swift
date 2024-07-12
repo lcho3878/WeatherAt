@@ -14,7 +14,6 @@ final class HomeViewController: BaseViewController {
     
     private let cityLabel = {
         let view = UILabel()
-//        view.text = "Jeju City"
         view.textAlignment = .center
         view.font = .systemFont(ofSize: 40)
         return view
@@ -22,7 +21,6 @@ final class HomeViewController: BaseViewController {
     
     private let tempLabel = {
         let view = UILabel()
-//        view.text = "5.9°"
         view.textAlignment = .center
         view.font = .systemFont(ofSize: 96, weight: .thin)
         return view
@@ -30,7 +28,6 @@ final class HomeViewController: BaseViewController {
     
     private let descriptionLabel = {
         let view = UILabel()
-//        view.text = "Broken Clouds"
         view.textAlignment = .center
         view.font = .systemFont(ofSize: 24)
         return view
@@ -38,9 +35,30 @@ final class HomeViewController: BaseViewController {
     
     private let minmaxLabel = {
         let view = UILabel()
-//        view.text = "최고 : 7.0° | 최저 : -4.2°"
         view.textAlignment = .center
         view.font = .systemFont(ofSize: 24)
+        return view
+    }()
+
+    private lazy var forecastCollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let n: CGFloat = 5
+        let spacing: CGFloat = 0
+        layout.minimumLineSpacing = spacing
+        let width = (UIScreen.main.bounds.width - (n - 1) * spacing - 32)
+        layout.itemSize = CGSize(width: width / n, height: 100)
+        
+        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        view.layer.cornerRadius = 8
+        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderWidth = 0.2
+        view.backgroundColor = .clear
+        view.showsHorizontalScrollIndicator = false
+        
+        view.delegate = self
+        view.dataSource = self
+        view.register(ForecastCollectionViewCell.self, forCellWithReuseIdentifier: ForecastCollectionViewCell.id)
         return view
     }()
     
@@ -50,11 +68,16 @@ final class HomeViewController: BaseViewController {
     }
     
     private func bindData() {
-        viewModel.mainOutput.bind {
-            self.cityLabel.text = $0?.cityname
-            self.descriptionLabel.text = $0?.description
-            self.tempLabel.text = $0?.tempLabel
-            self.minmaxLabel.text = $0?.minmaxLabel
+        viewModel.mainOutput.bind { result in
+            guard let result else { return }
+            self.cityLabel.text = result.cityname
+            self.descriptionLabel.text = result.description
+            self.tempLabel.text = result.tempLabel
+            self.minmaxLabel.text = result.minmaxLabel
+        }
+        viewModel.outputForecast.bind { result in
+            guard result != nil else { return }
+            self.forecastCollectionView.reloadData()
         }
     }
     
@@ -62,11 +85,12 @@ final class HomeViewController: BaseViewController {
         super.configureView()
     }
     
-    override func configureHierarhcy() {
+    override func configureHierarchy() {
         view.addSubview(cityLabel)
         view.addSubview(tempLabel)
         view.addSubview(descriptionLabel)
         view.addSubview(minmaxLabel)
+        view.addSubview(forecastCollectionView)
     }
     
     override func configureLayout() {
@@ -95,6 +119,28 @@ final class HomeViewController: BaseViewController {
             $0.horizontalEdges.equalTo(safeArea)
             $0.height.equalTo(24)
         }
+        
+        forecastCollectionView.snp.makeConstraints {
+            $0.top.equalTo(minmaxLabel.snp.bottom).offset(40)
+            $0.horizontalEdges.equalTo(safeArea).inset(16)
+            $0.height.equalTo(100)
+        }
+    }
+    
+}
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.outputForecast.value?.list.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ForecastCollectionViewCell.id, for: indexPath) as? ForecastCollectionViewCell else { return UICollectionViewCell() }
+        if let data = viewModel.outputForecast.value?.list[indexPath.item] {
+            cell.configureData(data)
+        }
+        return cell
     }
     
 }

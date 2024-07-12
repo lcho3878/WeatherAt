@@ -21,7 +21,6 @@ final class WeatherManager {
             .responseDecodable(of: T.self) { response in
                 switch response.result {
                 case .success(let v):
-                    print("Success: \(T.self)")
                     completionHandler(v)
                 case .failure(let e):
                     print(e)
@@ -49,21 +48,15 @@ enum WeatherRequest {
     }
     
     var parameters: Parameters {
+        var params: Parameters = [
+            "appid": APIKey.weatherAPI,
+            "lang": "kr",
+            "units": "metric"
+        ]
         switch self {
-        case .current(let cityId):
-            return [
-                "appid": APIKey.weatherAPI,
-                "id": cityId,
-                "lang": "kr",
-                "units": "metric"
-            ]
-        case .forecast(let cityId):
-            return [
-                "appid": APIKey.weatherAPI,
-                "id": cityId,
-                "lang": "kr",
-                "units": "metric"
-            ]
+        case .current(let cityId), .forecast(let cityId):
+            params["id"] = cityId
+            return params
         }
     }
 }

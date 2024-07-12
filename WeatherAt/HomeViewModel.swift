@@ -8,27 +8,10 @@
 import Foundation
 
 final class HomeViewModel {
-    
-    struct MainOutput {
-        var cityname: String
-        var temp: Double
-        var description: String?
-        var tempMin: Double
-        var tempMax: Double
         
-        var tempLabel: String {
-            return "\(temp.roundUp(demical: 1))°"
-        }
-         
-        var minmaxLabel: String {
-            return "최고 : \(tempMax.roundUp(demical: 1))° | 최저 : \(tempMin.roundUp(demical: 1))°"
-        }
-
-    }
-    
     var mainOutput = Observable<MainOutput?>(nil)
     var outputWeather = Observable<WeatherResult?>(nil)
-    var outputForeCast = Observable<ForecastResult?>(nil)
+    var outputForecast = Observable<ForecastResult?>(nil)
     
     init() {
         outputWeather.bind { result in
@@ -46,8 +29,27 @@ final class HomeViewModel {
         }
         
         WeatherManager.shared.callRequest(api: .forecast(cityId: 1835847), type: ForecastResult.self) { result in
-            self.outputForeCast.value = result
+            self.outputForecast.value = result
         }
     }
     
+}
+
+extension HomeViewModel {
+    struct MainOutput {
+        var cityname: String
+        var temp: Double
+        var description: String?
+        var tempMin: Double
+        var tempMax: Double
+        
+        var tempLabel: String {
+            return "\(temp.roundUp(demical: 1))°"
+        }
+         
+        var minmaxLabel: String {
+            return "최고 : \(tempMax.roundUp(demical: 1))° | 최저 : \(tempMin.roundUp(demical: 1))°"
+        }
+
+    }
 }

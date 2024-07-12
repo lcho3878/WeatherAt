@@ -50,7 +50,7 @@ final class TestViewController: BaseViewController {
         super.configureView()
     }
     
-    override func configureHierarhcy() {
+    func configureHierarhcy() {
         view.addSubview(cityLabel)
         view.addSubview(tempLabel)
         view.addSubview(descriptionLabel)

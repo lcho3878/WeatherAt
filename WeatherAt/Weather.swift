@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct WeatherResult: Decodable {
     let coord: Coord
@@ -124,14 +125,19 @@ struct ForecastResult: Decodable {
         let wind: WeatherResult.Wind
         let visibility: Int
         let pop: Double // forecast only
-        let dtText: String
         let rain :WeatherResult.Rain?
         let snow: WeatherResult.Snow?
         
+        var dtText: String {
+            let timeInterval = TimeInterval(dt)
+            let date = Date(timeIntervalSince1970: timeInterval)
+            let result = date.dateString("hh시")
+            return result
+        }
         
-        enum CodingKeys: String, CodingKey {
-            case dt, main, weather, clouds, wind, visibility, pop, rain, snow
-            case dtText = "dt_txt"
+        var iconImageURL: URL? {
+            guard let icon = weather.first?.icon else { return nil }
+            return URL(string: "https://openweathermap.org/img/wn/\(icon)@2x.png")
         }
         
     }
