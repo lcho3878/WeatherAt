@@ -131,7 +131,7 @@ struct ForecastResult: Decodable {
         var dtText: String {
             let timeInterval = TimeInterval(dt)
             let date = Date(timeIntervalSince1970: timeInterval)
-            let result = date.dateString("hh시")
+            let result = date.dateString("HH시")
             return result
         }
         
