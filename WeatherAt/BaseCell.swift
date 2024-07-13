@@ -37,6 +37,7 @@ class BaseTableViewCell: UITableViewCell, Reusable {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configureView()
         configureHierarchy()
         configureLayout()
     }
@@ -44,6 +45,8 @@ class BaseTableViewCell: UITableViewCell, Reusable {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configureView() {}
     
     func configureHierarchy() {}
     

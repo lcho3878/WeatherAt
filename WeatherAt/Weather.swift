@@ -101,6 +101,27 @@ struct ForecastResult: Decodable {
     let list: [Forecast]
     let city: City
     
+    var dailyList: [Dictionary<String, (Double, Double, URL?)>.Element] {
+        var dailyList: [String: (Double, Double, URL?)] = [:]
+        for forecast in list {
+            let date = forecast.date.dateString("y-M-d")
+            let tempMin = forecast.main.tempMin
+            let tempMax = forecast.main.tempMax
+            if let data = dailyList[date] {
+                let hour = Calendar.current.component(.hour, from: forecast.date)
+                dailyList[date]?.0 = min(data.0, tempMin)
+                dailyList[date]?.1 = max(data.1, tempMax)
+                if hour == 12 {
+                    dailyList[date]?.2 = forecast.iconImageURL
+                }
+            }
+            else {
+                dailyList[date] = (tempMin, tempMax, forecast.iconImageURL)
+            }
+        }
+        return dailyList.sorted { $0.key < $1.key }
+    }
+    
     struct City: Decodable {
         let id: Int
         let name: String
@@ -128,11 +149,14 @@ struct ForecastResult: Decodable {
         let rain :WeatherResult.Rain?
         let snow: WeatherResult.Snow?
         
-        var dtText: String {
+        var date: Date {
             let timeInterval = TimeInterval(dt)
             let date = Date(timeIntervalSince1970: timeInterval)
-            let result = date.dateString("HH시")
-            return result
+            return date
+        }
+        
+        var dtText: String {
+            return date.dateString("HH시")
         }
         
         var iconImageURL: URL? {

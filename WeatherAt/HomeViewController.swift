@@ -12,6 +12,15 @@ final class HomeViewController: BaseViewController {
     
     private let viewModel = HomeViewModel()
     
+    private let scrollView = {
+        let view = UIScrollView()
+        view.alwaysBounceVertical = true
+        view.showsVerticalScrollIndicator = false
+        return view
+    }()
+    
+    private let contentView = UIView()
+    
     private let cityLabel = {
         let view = UILabel()
         view.textAlignment = .center
@@ -62,6 +71,15 @@ final class HomeViewController: BaseViewController {
         return view
     }()
     
+    private lazy var forecastTableView = {
+        let view = UITableView()
+        view.delegate = self
+        view.dataSource = self
+        view.register(ForecastTableViewCell.self, forCellReuseIdentifier: ForecastTableViewCell.id)
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bindData()
@@ -78,6 +96,7 @@ final class HomeViewController: BaseViewController {
         viewModel.outputForecast.bind { result in
             guard result != nil else { return }
             self.forecastCollectionView.reloadData()
+            self.forecastTableView.reloadData()
         }
     }
     
@@ -86,18 +105,32 @@ final class HomeViewController: BaseViewController {
     }
     
     override func configureHierarchy() {
-        view.addSubview(cityLabel)
-        view.addSubview(tempLabel)
-        view.addSubview(descriptionLabel)
-        view.addSubview(minmaxLabel)
-        view.addSubview(forecastCollectionView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(cityLabel)
+        contentView.addSubview(tempLabel)
+        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(minmaxLabel)
+        contentView.addSubview(forecastCollectionView)
+        contentView.addSubview(forecastTableView)
     }
     
     override func configureLayout() {
         let safeArea = view.safeAreaLayoutGuide
         
+        scrollView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.equalTo(view)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.top.bottom.leading.trailing.equalTo(scrollView.contentLayoutGuide)
+            $0.width.equalTo(scrollView.frameLayoutGuide)
+        }
+        
         cityLabel.snp.makeConstraints {
-            $0.top.equalTo(safeArea).offset(32)
+            $0.top.equalTo(contentView).offset(32)
             $0.horizontalEdges.equalTo(safeArea)
             $0.height.equalTo(40)
         }
@@ -125,6 +158,13 @@ final class HomeViewController: BaseViewController {
             $0.horizontalEdges.equalTo(safeArea).inset(16)
             $0.height.equalTo(100)
         }
+        
+        forecastTableView.snp.makeConstraints {
+            $0.top.equalTo(forecastCollectionView.snp.bottom).offset(8)
+            $0.horizontalEdges.equalTo(safeArea).inset(16)
+            $0.height.equalTo(360)
+            $0.bottom.equalTo(contentView.snp.bottom)
+        }
     }
     
 }
@@ -141,6 +181,26 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.configureData(data)
         }
         return cell
+    }
+    
+}
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.outputForecast.value?.dailyList.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ForecastTableViewCell.id, for: indexPath) as? ForecastTableViewCell else { return UITableViewCell() }
+        if let data = viewModel.outputForecast.value?.dailyList[indexPath.row] {
+            cell.configureData(data)
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
     
 }
