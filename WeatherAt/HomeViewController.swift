@@ -80,6 +80,16 @@ final class HomeViewController: BaseViewController {
         return view
     }()
     
+    private lazy var mapButton = {
+        let view = UIBarButtonItem(image: UIImage(systemName: "map")?.withTintColor(.white, renderingMode: .alwaysOriginal), style: .plain, target: self, action: nil)
+        return view
+    }()
+    
+    private lazy var listButton = {
+        let view = UIBarButtonItem(image: UIImage(systemName: "list.dash")?.withTintColor(.white, renderingMode: .alwaysOriginal), style: .plain, target: self, action: nil)
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bindData()
@@ -102,6 +112,9 @@ final class HomeViewController: BaseViewController {
     
     override func configureView() {
         super.configureView()
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolbarItems = [mapButton, space ,listButton]
+        navigationController?.setToolbarHidden(false, animated: true)
     }
     
     override func configureHierarchy() {

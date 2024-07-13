@@ -93,11 +93,11 @@
 		543B87C12C3E80150092AC5A /* WeatherAt */ = {
 			isa = PBXGroup;
 			children = (
+				543B87DD2C3E81860092AC5A /* Resource */,
 				543B88072C41421B0092AC5A /* Protocol */,
 				543B88002C40F79C0092AC5A /* Extension */,
 				543B87FE2C3FDA5B0092AC5A /* Observable.swift */,
 				543B87E22C3E82FE0092AC5A /* Weather */,
-				543B87DD2C3E81860092AC5A /* Resource */,
 				543B87E52C3ED0C00092AC5A /* CustomView */,
 				543B87CD2C3E80160092AC5A /* LaunchScreen.storyboard */,
 				543B87EE2C3ED6C70092AC5A /* HomeView */,
