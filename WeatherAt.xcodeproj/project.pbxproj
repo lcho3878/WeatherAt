@@ -31,6 +31,9 @@
 		543B880D2C4198000092AC5A /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B880C2C4198000092AC5A /* Date+Extension.swift */; };
 		543B88102C419F6B0092AC5A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 543B880F2C419F6B0092AC5A /* Kingfisher */; };
 		543B88122C41A11C0092AC5A /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B88112C41A11C0092AC5A /* Base.swift */; };
+		543B88152C4301BB0092AC5A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B88142C4301BB0092AC5A /* SearchViewController.swift */; };
+		543B88172C4302D70092AC5A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B88162C4302D70092AC5A /* SearchViewModel.swift */; };
+		543B88192C430AB50092AC5A /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B88182C430AB50092AC5A /* SearchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +60,9 @@
 		543B880A2C4142A90092AC5A /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 		543B880C2C4198000092AC5A /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		543B88112C41A11C0092AC5A /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
+		543B88142C4301BB0092AC5A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		543B88162C4302D70092AC5A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		543B88182C430AB50092AC5A /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,7 @@
 				543B87E52C3ED0C00092AC5A /* CustomView */,
 				543B87CD2C3E80160092AC5A /* LaunchScreen.storyboard */,
 				543B87EE2C3ED6C70092AC5A /* HomeView */,
+				543B88132C4301AD0092AC5A /* SearchView */,
 				543B87D02C3E80160092AC5A /* Info.plist */,
 				543B87D82C3E80620092AC5A /* APIKey.swift */,
 				543B87DA2C3E809B0092AC5A /* Test */,
@@ -172,6 +179,16 @@
 				543B88112C41A11C0092AC5A /* Base.swift */,
 			);
 			name = Protocol;
+			sourceTree = "<group>";
+		};
+		543B88132C4301AD0092AC5A /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				543B88142C4301BB0092AC5A /* SearchViewController.swift */,
+				543B88182C430AB50092AC5A /* SearchTableViewCell.swift */,
+				543B88162C4302D70092AC5A /* SearchViewModel.swift */,
+			);
+			name = SearchView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,14 +277,17 @@
 				543B87FD2C3FD9F00092AC5A /* HomeViewModel.swift in Sources */,
 				543B88042C4141E00092AC5A /* ForecastCollectionViewCell.swift in Sources */,
 				543B87C72C3E80150092AC5A /* BaseViewController.swift in Sources */,
+				543B88172C4302D70092AC5A /* SearchViewModel.swift in Sources */,
 				543B87FB2C3FD9450092AC5A /* WeatherManager.swift in Sources */,
 				543B880D2C4198000092AC5A /* Date+Extension.swift in Sources */,
 				543B87C32C3E80150092AC5A /* AppDelegate.swift in Sources */,
 				543B880B2C4142A90092AC5A /* ForecastTableViewCell.swift in Sources */,
+				543B88192C430AB50092AC5A /* SearchTableViewCell.swift in Sources */,
 				543B88122C41A11C0092AC5A /* Base.swift in Sources */,
 				543B88092C4142220092AC5A /* Reusable.swift in Sources */,
 				543B88022C40F98A0092AC5A /* Double+Extension.swift in Sources */,
 				543B87D92C3E80620092AC5A /* APIKey.swift in Sources */,
+				543B88152C4301BB0092AC5A /* SearchViewController.swift in Sources */,
 				543B87FF2C3FDA5B0092AC5A /* Observable.swift in Sources */,
 				543B87E12C3E82D50092AC5A /* Weather.swift in Sources */,
 				543B87ED2C3ED6B30092AC5A /* HomeViewController.swift in Sources */,

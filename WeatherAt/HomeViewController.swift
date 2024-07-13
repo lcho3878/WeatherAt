@@ -86,7 +86,7 @@ final class HomeViewController: BaseViewController {
     }()
     
     private lazy var listButton = {
-        let view = UIBarButtonItem(image: UIImage(systemName: "list.dash")?.withTintColor(.white, renderingMode: .alwaysOriginal), style: .plain, target: self, action: nil)
+        let view = UIBarButtonItem(image: UIImage(systemName: "list.dash")?.withTintColor(.white, renderingMode: .alwaysOriginal), style: .plain, target: self, action: #selector(listButtonClicked))
         return view
     }()
     
@@ -180,6 +180,14 @@ final class HomeViewController: BaseViewController {
         }
     }
     
+}
+
+extension HomeViewController {
+    @objc
+    private func listButtonClicked() {
+        let searchVC = SearchViewController()
+        navigationController?.pushViewController(searchVC, animated: true)
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
