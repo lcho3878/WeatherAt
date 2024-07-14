@@ -16,7 +16,8 @@ final class HomeViewModel {
     var mapViewInput = Observable<[Double]?>(nil)
     
     init() {
-        callRequest(1835847)
+        let cityID = UserDefaults.standard.integer(forKey: "cityID")
+        callRequest(cityID)
         requestInput.bind { id in
             self.callRequest(id)
         }

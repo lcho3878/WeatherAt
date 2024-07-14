@@ -57,7 +57,7 @@ enum WeatherRequest {
         ]
         switch self {
         case .currentID(let cityId), .forecastID(let cityId):
-            params["id"] = cityId
+            params["id"] = cityId == 0 ? 1835847 : cityId
         case .currentCoord(let lat, let lon), .forecastCoord(let lat, let lon):
             params["lat"] = lat
             params["lon"] = lon

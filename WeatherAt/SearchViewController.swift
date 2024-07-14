@@ -42,6 +42,7 @@ final class SearchViewController: BaseViewController {
 
         viewModel.cellSelectedOutput.bind { id in
             guard let id else { return }
+            UserDefaults.standard.set(id, forKey: "cityID")
             self.closure?(id)
             self.navigationController?.popViewController(animated: true)
         }
