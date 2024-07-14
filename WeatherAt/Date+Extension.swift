@@ -21,4 +21,10 @@ extension Date {
         return formattedDate
     }
     
+    static func stringDate(string: String, format: String) -> Date? {
+        Date.dateFormatter.dateFormat = format
+        let date = Date.dateFormatter.date(from: string)
+        return date
+    }
+    
 }
