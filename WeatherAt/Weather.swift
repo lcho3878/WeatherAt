@@ -65,8 +65,8 @@ struct WeatherResult: Decodable {
     }
     
     struct Sys: Decodable {
-        let type: Int
-        let id: Int
+//        let type: Int
+//        let id: Int
         let country: String
         let sunrise: Int
         let sunset: Int

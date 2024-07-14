@@ -13,8 +13,10 @@ final class SearchViewModel {
     
     var viewDidloadInput = Observable<Void?>(nil)
     var searchTextInput = Observable<String>("")
+    var cellSelectedInput = Observable<City?>(nil)
     
     var viewDidloadOutput = Observable<[City]?>(nil)
+    var cellSelectedOutput = Observable<Int?>(nil)
     
     init() {
         viewDidloadInput.bind { _ in
@@ -30,6 +32,10 @@ final class SearchViewModel {
             }
             let text = text.lowercased()
             self.viewDidloadOutput.value = self.cityList.filter { $0.name.localizedCaseInsensitiveContains(text) || $0.country.localizedCaseInsensitiveContains(text) }
+        }
+        
+        cellSelectedInput.bind { result in
+            self.cellSelectedOutput.value = result?.id
         }
     }
     

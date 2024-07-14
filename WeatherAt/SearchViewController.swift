@@ -12,6 +12,8 @@ final class SearchViewController: BaseViewController {
     
     private let viewModel = SearchViewModel()
     
+    var closure: ((Int) -> Void)?
+    
     private lazy var searchController = {
         let view = UISearchController(searchResultsController: nil)
         view.searchBar.placeholder = "Search for a city."
@@ -38,6 +40,12 @@ final class SearchViewController: BaseViewController {
             self.cityTableView.reloadData()
         }
 
+        viewModel.cellSelectedOutput.bind { id in
+            guard let id else { return }
+            self.closure?(id)
+            self.navigationController?.popViewController(animated: true)
+        }
+        
     }
     
     override func configureView() {
@@ -76,6 +84,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let data = viewModel.viewDidloadOutput.value?[indexPath.row]
+        viewModel.cellSelectedInput.value = data
+    }
     
 }
 

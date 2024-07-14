@@ -13,7 +13,11 @@ final class HomeViewModel {
     var outputWeather = Observable<WeatherResult?>(nil)
     var outputForecast = Observable<ForecastResult?>(nil)
     
+    var requestInput = Observable<Int?>(nil)
+    
     init() {
+        callRequest(1835847)
+        
         outputWeather.bind { result in
             guard let result else { return }
             let name = result.name
@@ -24,11 +28,19 @@ final class HomeViewModel {
             self.mainOutput.value = MainOutput(cityname: name, temp: temp, description: description, tempMin: tempMin, tempMax: tempMax)
         }
         
-        WeatherManager.shared.callRequest(api: .current(cityId: 1835847), type: WeatherResult.self){ result in
+        requestInput.bind { id in
+            guard let id else { return }
+            self.callRequest(id)
+        }
+
+    }
+    
+    private func callRequest(_ id: Int) {
+        WeatherManager.shared.callRequest(api: .current(cityId: id), type: WeatherResult.self){ result in
             self.outputWeather.value = result
         }
         
-        WeatherManager.shared.callRequest(api: .forecast(cityId: 1835847), type: ForecastResult.self) { result in
+        WeatherManager.shared.callRequest(api: .forecast(cityId: id), type: ForecastResult.self) { result in
             self.outputForecast.value = result
         }
     }

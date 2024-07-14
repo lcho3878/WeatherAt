@@ -186,6 +186,9 @@ extension HomeViewController {
     @objc
     private func listButtonClicked() {
         let searchVC = SearchViewController()
+        searchVC.closure = { id in
+            self.viewModel.requestInput.value = id
+        }
         navigationController?.pushViewController(searchVC, animated: true)
     }
 }
