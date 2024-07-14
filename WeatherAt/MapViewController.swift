@@ -12,7 +12,8 @@ import CoreLocation
 
 final class MapViewController: BaseViewController {
     
-//    private let locationManager = CLLocationManager()
+    var closure: ((CLLocationCoordinate2D) -> Void)?
+    
     private lazy var locationManager = {
         let manager = CLLocationManager()
         manager.delegate = self
@@ -20,9 +21,17 @@ final class MapViewController: BaseViewController {
     }()
     
     // 새싹좌표
-    let center = CLLocationCoordinate2D(latitude: 37.517857, longitude: 126.886714)
+    private let center = CLLocationCoordinate2D(latitude: 37.517857, longitude: 126.886714)
+
+    private let annotation = MKPointAnnotation()
     
-    private let mapView = MKMapView()
+    private lazy var mapView = {
+        let view = MKMapView()
+        view.delegate = self
+        view.showsUserLocation = true
+        view.addAnnotation(annotation)
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,11 +104,24 @@ extension MapViewController: CLLocationManagerDelegate {
     
 }
 
-extension MapViewController {
+extension MapViewController: MKMapViewDelegate {
     
     private func configureMapView(_ center: CLLocationCoordinate2D) {
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 1000, longitudinalMeters: 1000)
         mapView.setRegion(region, animated: true)
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        let coord = mapView.centerCoordinate
+        annotation.coordinate = coord
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect annotation: any MKAnnotation) {
+        let coord = annotation.coordinate
+        showAlert(title: "", message: "해당 위치의 날씨 정보를 가져오시겠습니까?" ){
+            self.closure?(coord)
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
 }

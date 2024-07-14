@@ -213,6 +213,9 @@ extension HomeViewController {
     @objc
     private func mapButtonClicked() {
         let mapVC = MapViewController()
+        mapVC.closure = { coord in
+            print(coord)
+        }
         navigationController?.pushViewController(mapVC, animated: true)
     }
 }
