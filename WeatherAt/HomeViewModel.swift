@@ -13,22 +13,39 @@ final class HomeViewModel {
     var outputForecast = Observable<ForecastResult?>(nil)
     
     var requestInput = Observable<Int?>(nil)
+    var mapViewInput = Observable<[Double]?>(nil)
     
     init() {
         callRequest(1835847)
         requestInput.bind { id in
-            guard let id else { return }
             self.callRequest(id)
+        }
+        
+        mapViewInput.bind { coord in
+            self.callRequest(coord)
         }
 
     }
     
-    private func callRequest(_ id: Int) {
-        WeatherManager.shared.callRequest(api: .current(cityId: id), type: WeatherResult.self){ result in
+    private func callRequest(_ id: Int?) {
+        guard let id else { return }
+        WeatherManager.shared.callRequest(api: .currentID(cityId: id), type: WeatherResult.self){ result in
             self.outputWeather.value = result
         }
         
-        WeatherManager.shared.callRequest(api: .forecast(cityId: id), type: ForecastResult.self) { result in
+        WeatherManager.shared.callRequest(api: .forecastID(cityId: id), type: ForecastResult.self) { result in
+            self.outputForecast.value = result
+        }
+    }
+    
+    private func callRequest(_ coord: [Double]?) {
+        guard let lat = coord?[0],
+              let lon = coord?[1] else { return }
+        WeatherManager.shared.callRequest(api: .currentCoord(lat: lat, lon: lon), type: WeatherResult.self) { result in
+            self.outputWeather.value = result
+        }
+        
+        WeatherManager.shared.callRequest(api: .forecastCoord(lat: lat, lon: lon), type: ForecastResult.self) { result in
             self.outputForecast.value = result
         }
     }

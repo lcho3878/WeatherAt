@@ -214,7 +214,9 @@ extension HomeViewController {
     private func mapButtonClicked() {
         let mapVC = MapViewController()
         mapVC.closure = { coord in
-            print(coord)
+            let lat = coord.latitude
+            let lon = coord.longitude
+            self.viewModel.mapViewInput.value = [lat, lon]
         }
         navigationController?.pushViewController(mapVC, animated: true)
     }

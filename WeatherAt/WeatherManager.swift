@@ -31,8 +31,10 @@ final class WeatherManager {
 }
 
 enum WeatherRequest {
-    case current(cityId: Int)
-    case forecast(cityId: Int)
+    case currentID(cityId: Int)
+    case currentCoord(lat: Double, lon: Double)
+    case forecastID(cityId: Int)
+    case forecastCoord(lat: Double, lon: Double)
     
     var baseURL: String {
         return "https://api.openweathermap.org/data/2.5/"
@@ -40,9 +42,9 @@ enum WeatherRequest {
     
     var endPoint: URL? {
         switch self {
-        case .current:
+        case .currentID, .currentCoord:
             return URL(string: baseURL + "weather")
-        case .forecast:
+        case .forecastID, .forecastCoord:
             return URL(string: baseURL + "forecast")
         }
     }
@@ -54,9 +56,12 @@ enum WeatherRequest {
             "units": "metric"
         ]
         switch self {
-        case .current(let cityId), .forecast(let cityId):
+        case .currentID(let cityId), .forecastID(let cityId):
             params["id"] = cityId
-            return params
+        case .currentCoord(let lat, let lon), .forecastCoord(let lat, let lon):
+            params["lat"] = lat
+            params["lon"] = lon
         }
+        return params
     }
 }
