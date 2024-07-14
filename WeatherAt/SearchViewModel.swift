@@ -29,8 +29,7 @@ final class SearchViewModel {
                 return
             }
             let text = text.lowercased()
-            //검색 예외처리 좀더 
-            self.viewDidloadOutput.value = self.cityList.filter { $0.name.lowercased().contains(text) || $0.country.lowercased().contains(text) }
+            self.viewDidloadOutput.value = self.cityList.filter { $0.name.localizedCaseInsensitiveContains(text) || $0.country.localizedCaseInsensitiveContains(text) }
         }
     }
     
