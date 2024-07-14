@@ -87,7 +87,7 @@ final class HomeViewController: BaseViewController {
     }()
     
     private lazy var mapButton = {
-        let view = UIBarButtonItem(image: UIImage(systemName: "map")?.withTintColor(.white, renderingMode: .alwaysOriginal), style: .plain, target: self, action: nil)
+        let view = UIBarButtonItem(image: UIImage(systemName: "map")?.withTintColor(.white, renderingMode: .alwaysOriginal), style: .plain, target: self, action: #selector(mapButtonClicked))
         return view
     }()
     
@@ -208,6 +208,12 @@ extension HomeViewController {
             self.viewModel.requestInput.value = id
         }
         navigationController?.pushViewController(searchVC, animated: true)
+    }
+    
+    @objc
+    private func mapButtonClicked() {
+        let mapVC = MapViewController()
+        navigationController?.pushViewController(mapVC, animated: true)
     }
 }
 
