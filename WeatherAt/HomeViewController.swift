@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import MapKit
 
 final class HomeViewController: BaseViewController {
     
@@ -80,6 +81,11 @@ final class HomeViewController: BaseViewController {
         return view
     }()
     
+    private let mapView = {
+        let view = MKMapView()
+        return view
+    }()
+    
     private lazy var mapButton = {
         let view = UIBarButtonItem(image: UIImage(systemName: "map")?.withTintColor(.white, renderingMode: .alwaysOriginal), style: .plain, target: self, action: nil)
         return view
@@ -102,6 +108,9 @@ final class HomeViewController: BaseViewController {
             self.descriptionLabel.text = result.description
             self.tempLabel.text = result.tempLabel
             self.minmaxLabel.text = result.minmaxLabel
+            let center = CLLocationCoordinate2D(latitude: result.lat, longitude: result.lon)
+            self.configureMapView(center, cityname: result.cityname)
+            
         }
         viewModel.outputForecast.bind { result in
             guard result != nil else { return }
@@ -126,6 +135,7 @@ final class HomeViewController: BaseViewController {
         contentView.addSubview(minmaxLabel)
         contentView.addSubview(forecastCollectionView)
         contentView.addSubview(forecastTableView)
+        contentView.addSubview(mapView)
     }
     
     override func configureLayout() {
@@ -176,6 +186,12 @@ final class HomeViewController: BaseViewController {
             $0.top.equalTo(forecastCollectionView.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(safeArea).inset(16)
             $0.height.equalTo(360)
+        }
+        
+        mapView.snp.makeConstraints {
+            $0.top.equalTo(forecastTableView.snp.bottom).offset(8)
+            $0.horizontalEdges.equalTo(safeArea).inset(16)
+            $0.height.equalTo(200)
             $0.bottom.equalTo(contentView.snp.bottom)
         }
     }
@@ -190,6 +206,17 @@ extension HomeViewController {
             self.viewModel.requestInput.value = id
         }
         navigationController?.pushViewController(searchVC, animated: true)
+    }
+}
+
+extension HomeViewController {
+    private func configureMapView(_ center: CLLocationCoordinate2D, cityname: String) {
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.region = MKCoordinateRegion(center: center, latitudinalMeters: 100000, longitudinalMeters: 100000)
+        let annotation = MKPointAnnotation()
+        annotation.title = cityname
+        annotation.coordinate = center
+        mapView.addAnnotation(annotation)
     }
 }
 

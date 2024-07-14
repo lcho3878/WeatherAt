@@ -25,7 +25,9 @@ final class HomeViewModel {
             guard let description = result.weather.first?.description else { return }
             let tempMin = result.main.tempMin
             let tempMax = result.main.tempMax
-            self.mainOutput.value = MainOutput(cityname: name, temp: temp, description: description, tempMin: tempMin, tempMax: tempMax)
+            let lat = result.coord.lat
+            let lon = result.coord.lon
+            self.mainOutput.value = MainOutput(cityname: name, temp: temp, description: description, tempMin: tempMin, tempMax: tempMax, lat: lat, lon: lon)
         }
         
         requestInput.bind { id in
@@ -51,9 +53,12 @@ extension HomeViewModel {
     struct MainOutput {
         var cityname: String
         var temp: Double
-        var description: String?
+        var description: String
         var tempMin: Double
         var tempMax: Double
+        var lat: Double
+        var lon: Double
+        
         
         var tempLabel: String {
             return "\(temp.roundUp(demical: 1))°"
