@@ -102,16 +102,18 @@ final class HomeViewController: BaseViewController {
     }
     
     private func bindData() {
-        viewModel.mainOutput.bind { result in
+        
+        viewModel.outputWeather.bind { result in
             guard let result else { return }
-            self.cityLabel.text = result.cityname
-            self.descriptionLabel.text = result.description
-            self.tempLabel.text = result.tempLabel
-            self.minmaxLabel.text = result.minmaxLabel
-            let center = CLLocationCoordinate2D(latitude: result.lat, longitude: result.lon)
-            self.configureMapView(center, cityname: result.cityname)
+            self.cityLabel.text = result.name
+            self.descriptionLabel.text = result.weather.first?.description
+            self.tempLabel.text = "\(result.main.temp.roundUp(demical: 1))°"
+            self.minmaxLabel.text = "최고 : \(result.main.tempMax.roundUp(demical: 1))° | 최저 : \(result.main.tempMin.roundUp(demical: 1))°"
+            let center = CLLocationCoordinate2D(latitude: result.coord.lat, longitude: result.coord.lon)
+            self.configureMapView(center, cityname: result.name)
             
         }
+        
         viewModel.outputForecast.bind { result in
             guard result != nil else { return }
             self.forecastCollectionView.reloadData()
