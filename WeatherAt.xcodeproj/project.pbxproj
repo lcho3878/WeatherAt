@@ -35,6 +35,7 @@
 		543B88172C4302D70092AC5A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B88162C4302D70092AC5A /* SearchViewModel.swift */; };
 		543B88192C430AB50092AC5A /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B88182C430AB50092AC5A /* SearchTableViewCell.swift */; };
 		543B881C2C43A1BB0092AC5A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B881B2C43A1BB0092AC5A /* MapViewController.swift */; };
+		543B88242C45270F0092AC5A /* TranslucentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543B88232C45270F0092AC5A /* TranslucentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		543B88162C4302D70092AC5A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		543B88182C430AB50092AC5A /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		543B881B2C43A1BB0092AC5A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		543B88232C45270F0092AC5A /* TranslucentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslucentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			children = (
 				543B87C62C3E80150092AC5A /* BaseViewController.swift */,
 				543B88052C4141F80092AC5A /* BaseCell.swift */,
+				543B88232C45270F0092AC5A /* TranslucentView.swift */,
 			);
 			name = CustomView;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				543B88152C4301BB0092AC5A /* SearchViewController.swift in Sources */,
 				543B87FF2C3FDA5B0092AC5A /* Observable.swift in Sources */,
 				543B87E12C3E82D50092AC5A /* Weather.swift in Sources */,
+				543B88242C45270F0092AC5A /* TranslucentView.swift in Sources */,
 				543B87ED2C3ED6B30092AC5A /* HomeViewController.swift in Sources */,
 				543B88062C4141F80092AC5A /* BaseCell.swift in Sources */,
 				543B87C52C3E80150092AC5A /* SceneDelegate.swift in Sources */,

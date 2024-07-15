@@ -78,6 +78,10 @@ final class HomeViewController: BaseViewController {
         view.dataSource = self
         view.register(ForecastTableViewCell.self, forCellReuseIdentifier: ForecastTableViewCell.id)
         view.backgroundColor = .clear
+        view.layer.cornerRadius = 8
+        view.layer.borderWidth = 0.2
+        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.separatorColor = .lightGray
         return view
     }()
     
@@ -144,9 +148,9 @@ final class HomeViewController: BaseViewController {
         let safeArea = view.safeAreaLayoutGuide
         
         scrollView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.top.equalTo(safeArea)
             $0.leading.trailing.equalTo(view)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            $0.bottom.equalTo(safeArea)
         }
         
         contentView.snp.makeConstraints {
@@ -155,7 +159,7 @@ final class HomeViewController: BaseViewController {
         }
         
         cityLabel.snp.makeConstraints {
-            $0.top.equalTo(contentView).offset(32)
+            $0.top.equalTo(contentView)
             $0.horizontalEdges.equalTo(safeArea)
             $0.height.equalTo(40)
         }
