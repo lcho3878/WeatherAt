@@ -127,6 +127,8 @@ final class HomeViewController: BaseViewController {
     
     override func configureView() {
         super.configureView()
+        navigationItem.backButtonDisplayMode = .minimal
+        navigationController?.navigationBar.tintColor = .label
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbarItems = [mapButton, space ,listButton]
         navigationController?.setToolbarHidden(false, animated: true)

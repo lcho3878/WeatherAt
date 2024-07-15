@@ -51,6 +51,7 @@ final class SearchViewController: BaseViewController {
     
     override func configureView() {
         super.configureView()
+        view.backgroundColor = .systemBackground
         title = "City"
         navigationItem.searchController = searchController
         navigationController?.navigationBar.prefersLargeTitles = true
