@@ -68,7 +68,7 @@ final class HomeViewController: BaseViewController {
         return view
     }()
     
-    private lazy var collectionViewBackground = TranslucentView(title: "3시간 간격의 일기예보", image: UIImage(systemName: "calendar"), contentView: forecastCollectionView, color: .white)
+    private lazy var collectionViewBackground = TranslucentView(title: "3시간 간격의 일기예보", image: UIImage(systemName: "calendar"), contentView: forecastCollectionView, color: .label)
     
     private lazy var forecastTableView = {
         let view = UITableView()
@@ -81,14 +81,46 @@ final class HomeViewController: BaseViewController {
         return view
     }()
     
-    private lazy var tableViewBackground = TranslucentView(title: "5일 간의 일기예보", image: UIImage(systemName: "calendar"), contentView: forecastTableView, color: .white)
+    private lazy var tableViewBackground = TranslucentView(title: "5일 간의 일기예보", image: UIImage(systemName: "calendar"), contentView: forecastTableView, color: .label)
     
     private let mapView = {
         let view = MKMapView()
         return view
     }()
     
-    private lazy var mapViewBackground = TranslucentView(title: "위치", image: UIImage(systemName: "thermometer.medium"), contentView: mapView, color: .white)
+    private lazy var mapViewBackground = TranslucentView(title: "위치", image: UIImage(systemName: "thermometer.medium"), contentView: mapView, color: .label)
+    
+    private let windView = TranslucentView(title: "바람 속도", image: UIImage(systemName: "wind"), color: .lightGray)
+    
+    private let windLabel = {
+        let view = UILabel()
+        view.font = .systemFont(ofSize: 30)
+        return view
+    }()
+    
+    private let cloudView = TranslucentView(title: "구름", image: UIImage(systemName: "cloud.fill"), color: .lightGray)
+    
+    private let cloudLabel = {
+        let view = UILabel()
+        view.font = .systemFont(ofSize: 30)
+        return view
+    }()
+    
+    private let atmoshpereView = TranslucentView(title: "기압", image: UIImage(systemName: "thermometer.medium"), color: .lightGray)
+    
+    private let atmoshpereLabel = {
+        let view = UILabel()
+        view.font = .systemFont(ofSize: 30)
+        return view
+    }()
+    
+    private let humidityView = TranslucentView(title: "습도", image: UIImage(systemName: "humidity"), color: .lightGray)
+    
+    private let humidityLabel = {
+        let view = UILabel()
+        view.font = .systemFont(ofSize: 30)
+        return view
+    }()
     
     private lazy var mapButton = {
         let view = UIBarButtonItem(image: UIImage(systemName: "map")?.withTintColor(.white, renderingMode: .alwaysOriginal), style: .plain, target: self, action: #selector(mapButtonClicked))
@@ -113,6 +145,11 @@ final class HomeViewController: BaseViewController {
             self.descriptionLabel.text = result.weather.first?.description
             self.tempLabel.text = "\(result.main.temp.roundUp(demical: 1))°"
             self.minmaxLabel.text = "최고 : \(result.main.tempMax.roundUp(demical: 1))° | 최저 : \(result.main.tempMin.roundUp(demical: 1))°"
+            self.windLabel.text = "\(result.wind.speed.roundUp(demical: 2))m/s"
+            self.cloudLabel.text = "\(result.clouds.all)%"
+            self.atmoshpereLabel.text = "\(result.main.pressure.formatted())hpa"
+            self.humidityLabel.text = "\(result.main.humidity)%"
+            
             let center = CLLocationCoordinate2D(latitude: result.coord.lat, longitude: result.coord.lon)
             self.configureMapView(center, cityname: result.name)
             
@@ -144,6 +181,14 @@ final class HomeViewController: BaseViewController {
         contentView.addSubview(collectionViewBackground)
         contentView.addSubview(tableViewBackground)
         contentView.addSubview(mapViewBackground)
+        contentView.addSubview(windView)
+        windView.contentView.addSubview(windLabel)
+        contentView.addSubview(cloudView)
+        cloudView.contentView.addSubview(cloudLabel)
+        contentView.addSubview(atmoshpereView)
+        atmoshpereView.contentView.addSubview(atmoshpereLabel)
+        contentView.addSubview(humidityView)
+        humidityView.contentView.addSubview(humidityLabel)
     }
     
     override func configureLayout() {
@@ -200,9 +245,48 @@ final class HomeViewController: BaseViewController {
             $0.top.equalTo(tableViewBackground.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(safeArea).inset(16)
             $0.height.equalTo(200)
-            $0.bottom.equalTo(contentView.snp.bottom)
+        }
+        
+        windView.snp.makeConstraints {
+            $0.top.equalTo(mapViewBackground.snp.bottom).offset(8)
+            $0.leading.equalTo(mapViewBackground)
+            $0.trailing.equalTo(contentView.snp.centerX).inset(4)
+            $0.height.equalTo(windView.snp.width)
+        }
+        
+        windLabel.snp.makeConstraints {
+            $0.top.horizontalEdges.equalToSuperview()
+        }
+        
+        cloudView.snp.makeConstraints {
+            $0.top.size.bottom.equalTo(windView)
+            $0.leading.equalTo(contentView.snp.centerX).offset(4)
+            $0.bottom.equalTo(windView)
+        }
+        
+        cloudLabel.snp.makeConstraints {
+            $0.top.horizontalEdges.equalToSuperview()
         }
 
+        atmoshpereView.snp.makeConstraints {
+            $0.top.equalTo(windView.snp.bottom).offset(8)
+            $0.size.centerX.equalTo(windView)
+            $0.bottom.equalTo(contentView.snp.bottom).inset(40)
+        }
+        
+        atmoshpereLabel.snp.makeConstraints {
+            $0.top.horizontalEdges.equalToSuperview()
+        }
+        
+        humidityView.snp.makeConstraints {
+            $0.top.size.bottom.equalTo(atmoshpereView)
+            $0.centerX.equalTo(cloudView)
+        }
+        
+        humidityLabel.snp.makeConstraints {
+            $0.top.horizontalEdges.equalToSuperview()
+        }
+        
     }
     
 }
