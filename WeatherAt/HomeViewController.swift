@@ -58,11 +58,7 @@ final class HomeViewController: BaseViewController {
         layout.minimumLineSpacing = spacing
         let width = (UIScreen.main.bounds.width - (n - 1) * spacing - 32)
         layout.itemSize = CGSize(width: width / n, height: 100)
-        
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view.layer.cornerRadius = 8
-        view.layer.borderColor = UIColor.lightGray.cgColor
-        view.layer.borderWidth = 0.2
         view.backgroundColor = .clear
         view.showsHorizontalScrollIndicator = false
         
@@ -72,23 +68,27 @@ final class HomeViewController: BaseViewController {
         return view
     }()
     
+    private lazy var collectionViewBackground = TranslucentView(title: "3시간 간격의 일기예보", image: UIImage(systemName: "calendar"), contentView: forecastCollectionView, color: .white)
+    
     private lazy var forecastTableView = {
         let view = UITableView()
         view.delegate = self
         view.dataSource = self
         view.register(ForecastTableViewCell.self, forCellReuseIdentifier: ForecastTableViewCell.id)
         view.backgroundColor = .clear
-        view.layer.cornerRadius = 8
-        view.layer.borderWidth = 0.2
-        view.layer.borderColor = UIColor.lightGray.cgColor
         view.separatorColor = .lightGray
+        view.isScrollEnabled = false
         return view
     }()
+    
+    private lazy var tableViewBackground = TranslucentView(title: "5일 간의 일기예보", image: UIImage(systemName: "calendar"), contentView: forecastTableView, color: .white)
     
     private let mapView = {
         let view = MKMapView()
         return view
     }()
+    
+    private lazy var mapViewBackground = TranslucentView(title: "위치", image: UIImage(systemName: "thermometer.medium"), contentView: mapView, color: .white)
     
     private lazy var mapButton = {
         let view = UIBarButtonItem(image: UIImage(systemName: "map")?.withTintColor(.white, renderingMode: .alwaysOriginal), style: .plain, target: self, action: #selector(mapButtonClicked))
@@ -139,9 +139,9 @@ final class HomeViewController: BaseViewController {
         contentView.addSubview(tempLabel)
         contentView.addSubview(descriptionLabel)
         contentView.addSubview(minmaxLabel)
-        contentView.addSubview(forecastCollectionView)
-        contentView.addSubview(forecastTableView)
-        contentView.addSubview(mapView)
+        contentView.addSubview(collectionViewBackground)
+        contentView.addSubview(tableViewBackground)
+        contentView.addSubview(mapViewBackground)
     }
     
     override func configureLayout() {
@@ -182,24 +182,25 @@ final class HomeViewController: BaseViewController {
             $0.height.equalTo(24)
         }
         
-        forecastCollectionView.snp.makeConstraints {
+        collectionViewBackground.snp.makeConstraints {
             $0.top.equalTo(minmaxLabel.snp.bottom).offset(40)
             $0.horizontalEdges.equalTo(safeArea).inset(16)
-            $0.height.equalTo(100)
+            $0.height.equalTo(140)
         }
         
-        forecastTableView.snp.makeConstraints {
-            $0.top.equalTo(forecastCollectionView.snp.bottom).offset(8)
+        tableViewBackground.snp.makeConstraints {
+            $0.top.equalTo(collectionViewBackground.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(safeArea).inset(16)
-            $0.height.equalTo(360)
+            $0.height.equalTo(400)
         }
         
-        mapView.snp.makeConstraints {
-            $0.top.equalTo(forecastTableView.snp.bottom).offset(8)
+        mapViewBackground.snp.makeConstraints {
+            $0.top.equalTo(tableViewBackground.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(safeArea).inset(16)
             $0.height.equalTo(200)
             $0.bottom.equalTo(contentView.snp.bottom)
         }
+
     }
     
 }
