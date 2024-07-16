@@ -36,15 +36,15 @@ final class SearchViewController: BaseViewController {
     }
     
     private func bindData() {
-        viewModel.viewDidloadOutput.bind { _ in
-            self.cityTableView.reloadData()
+        viewModel.viewDidloadOutput.bind { [weak self] _ in
+            self?.cityTableView.reloadData()
         }
 
-        viewModel.cellSelectedOutput.bind { id in
+        viewModel.cellSelectedOutput.bind { [weak self] id in
             guard let id else { return }
             UserDefaults.standard.set(id, forKey: "cityID")
-            self.closure?(id)
-            self.navigationController?.popViewController(animated: true)
+            self?.closure?(id)
+            self?.navigationController?.popViewController(animated: true)
         }
         
     }

@@ -139,19 +139,19 @@ final class HomeViewController: BaseViewController {
     
     private func bindData() {
         
-        viewModel.outputWeather.bind { result in
+        viewModel.outputWeather.bind { [weak self] result in
             guard let result else { return }
-            self.cityLabel.text = result.name
-            self.descriptionLabel.text = result.weather.first?.description
-            self.tempLabel.text = "\(result.main.temp.roundUp(demical: 1))°"
-            self.minmaxLabel.text = "최고 : \(result.main.tempMax.roundUp(demical: 1))° | 최저 : \(result.main.tempMin.roundUp(demical: 1))°"
-            self.windLabel.text = "\(result.wind.speed.roundUp(demical: 2))m/s"
-            self.cloudLabel.text = "\(result.clouds.all)%"
-            self.atmoshpereLabel.text = "\(result.main.pressure.formatted())hpa"
-            self.humidityLabel.text = "\(result.main.humidity)%"
+            self?.cityLabel.text = result.name
+            self?.descriptionLabel.text = result.weather.first?.description
+            self?.tempLabel.text = "\(result.main.temp.roundUp(demical: 1))°"
+            self?.minmaxLabel.text = "최고 : \(result.main.tempMax.roundUp(demical: 1))° | 최저 : \(result.main.tempMin.roundUp(demical: 1))°"
+            self?.windLabel.text = "\(result.wind.speed.roundUp(demical: 2))m/s"
+            self?.cloudLabel.text = "\(result.clouds.all)%"
+            self?.atmoshpereLabel.text = "\(result.main.pressure.formatted())hpa"
+            self?.humidityLabel.text = "\(result.main.humidity)%"
             
             let center = CLLocationCoordinate2D(latitude: result.coord.lat, longitude: result.coord.lon)
-            self.configureMapView(center, cityname: result.name)
+            self?.configureMapView(center, cityname: result.name)
             
         }
         

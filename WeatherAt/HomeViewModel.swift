@@ -18,12 +18,12 @@ final class HomeViewModel {
     init() {
         let cityID = UserDefaults.standard.integer(forKey: "cityID")
         callRequest(cityID)
-        requestInput.bind { id in
-            self.callRequest(id)
+        requestInput.bind { [weak self] id in
+            self?.callRequest(id)
         }
         
-        mapViewInput.bind { coord in
-            self.callRequest(coord)
+        mapViewInput.bind { [weak self] coord in
+            self?.callRequest(coord)
         }
 
     }

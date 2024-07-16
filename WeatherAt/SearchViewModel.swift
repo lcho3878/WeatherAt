@@ -19,23 +19,23 @@ final class SearchViewModel {
     var cellSelectedOutput = Observable<Int?>(nil)
     
     init() {
-        viewDidloadInput.bind { _ in
-            guard let data = self.loadData() else { return }
-            self.loadCities(data)
-            self.viewDidloadOutput.value = self.cityList
+        viewDidloadInput.bind { [weak self] _ in
+            guard let data = self?.loadData() else { return }
+            self?.loadCities(data)
+            self?.viewDidloadOutput.value = self?.cityList
         }
         
-        searchTextInput.bind { text in
+        searchTextInput.bind { [weak self] text in
             guard text != "" else {
-                self.viewDidloadOutput.value = self.cityList
+                self?.viewDidloadOutput.value = self?.cityList
                 return
             }
             let text = text.lowercased()
-            self.viewDidloadOutput.value = self.cityList.filter { $0.name.localizedCaseInsensitiveContains(text) || $0.country.localizedCaseInsensitiveContains(text) }
+            self?.viewDidloadOutput.value = self?.cityList.filter { $0.name.localizedCaseInsensitiveContains(text) || $0.country.localizedCaseInsensitiveContains(text) }
         }
         
-        cellSelectedInput.bind { result in
-            self.cellSelectedOutput.value = result?.id
+        cellSelectedInput.bind { [weak self] result in
+            self?.cellSelectedOutput.value = result?.id
         }
     }
     
