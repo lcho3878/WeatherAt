@@ -31,11 +31,11 @@ final class HomeViewModel {
     private func callRequest(_ id: Int?) {
         guard let id else { return }
         WeatherManager.shared.callRequest(api: .currentID(cityId: id), type: WeatherResult.self){ result in
-            self.outputWeather.value = result
+            self.outputWeather.value = try? result.get()
         }
         
         WeatherManager.shared.callRequest(api: .forecastID(cityId: id), type: ForecastResult.self) { result in
-            self.outputForecast.value = result
+            self.outputForecast.value = try? result.get()
         }
     }
     
@@ -43,11 +43,11 @@ final class HomeViewModel {
         guard let lat = coord?[0],
               let lon = coord?[1] else { return }
         WeatherManager.shared.callRequest(api: .currentCoord(lat: lat, lon: lon), type: WeatherResult.self) { result in
-            self.outputWeather.value = result
+            self.outputWeather.value = try? result.get()
         }
         
         WeatherManager.shared.callRequest(api: .forecastCoord(lat: lat, lon: lon), type: ForecastResult.self) { result in
-            self.outputForecast.value = result
+            self.outputForecast.value = try? result.get()
         }
     }
     

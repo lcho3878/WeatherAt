@@ -14,16 +14,16 @@ final class WeatherManager {
     
     private init() {}
     
-    func callRequest<T: Decodable>(api: WeatherRequest, type: T.Type, completionHandler: @escaping (T) -> Void) {
+    func callRequest<T: Decodable>(api: WeatherRequest, type: T.Type, completionHandler: @escaping (Result<T, Error>) -> Void) {
         guard let url = api.endPoint else { return }
         let params = api.parameters
         AF.request(url, parameters: params)
             .responseDecodable(of: T.self) { response in
                 switch response.result {
                 case .success(let v):
-                    completionHandler(v)
+                    completionHandler(.success(v))
                 case .failure(let e):
-                    print(e)
+                    completionHandler(.failure(e))
                 }
             }
     }
