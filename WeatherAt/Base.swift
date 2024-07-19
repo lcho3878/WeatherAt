@@ -7,7 +7,11 @@
 
 import Foundation
 
+@objc
 protocol Base {
+    @objc 
+    optional func configureView()
+    
     func configureHierarchy()
     
     func configureLayout()
