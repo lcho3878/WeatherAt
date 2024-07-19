@@ -64,7 +64,7 @@ extension MapViewController: CLLocationManagerDelegate {
                 }
             }
             else {
-                self.showAlert(message: "위치 서비스가 켜져 있어야 합니다.", actionTitle: "확인")
+                self.showAlert(message: "위치 서비스가 켜져 있어야 합니다.")
             }
         }
     }
@@ -77,7 +77,7 @@ extension MapViewController: CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestWhenInUseAuthorization()
         case .denied:
-            showAlert(message: "위치 사용 권한이 필요합니다.", actionTitle: "확인")
+            showAlert(message: "위치 사용 권한이 필요합니다.")
             configureMapView(center)
         case .authorizedWhenInUse:
             locationManager.startUpdatingLocation()
