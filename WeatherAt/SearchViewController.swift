@@ -35,6 +35,11 @@ final class SearchViewController: BaseViewController {
         bindData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
     private func bindData() {
         viewModel.viewDidloadOutput.bind { [weak self] _ in
             self?.cityTableView.reloadData()
